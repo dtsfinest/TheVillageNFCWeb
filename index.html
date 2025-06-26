@@ -198,12 +198,12 @@
         }
 
         .popup-content {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6b9d 50%, #c471f5 100%);
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             text-align: center;
-            max-width: 500px;
+            max-width: 600px;
             width: 90%;
             position: relative;
             transform: scale(0.7);
@@ -272,6 +272,41 @@
             box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
         }
 
+        .cocktail-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .cocktail-menu {
+            text-align: left;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cocktail-item {
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .cocktail-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #fff200;
+        }
+
+        .cocktail-item p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
         .popup-cta:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
@@ -301,13 +336,32 @@
     <div id="announcementPopup" class="popup-overlay">
         <div class="popup-content">
             <button class="popup-close" onclick="closePopup()">&times;</button>
-            <h2>🍝 Special Announcement!</h2>
-            <div class="popup-announcement">
-                <p><strong>New Weekend Special!</strong></p>
-                <p>Try our signature Osso Buco every Friday, Saturday & Sunday!</p>
-                <p>Made with slow-braised veal shanks in a rich tomato and wine sauce.</p>
-                <p><em>Available while supplies last</em></p>
+            <h2>☀️ Summer Cocktails are here ☀️</h2>
+            <h3 style="color: #fff200; margin-bottom: 20px;">Sip Into Summer at The Village ☀️</h3>
+            
+            <img src="summer-cocktails.jpg" alt="Summer Cocktails" class="cocktail-image">
+            
+            <p style="color: white; font-size: 1.1rem; margin-bottom: 20px;">Our handcrafted Seasonal Summer Cocktails have arrived — refreshing, bold, and made for sunny days on the patio!</p>
+            
+            <div class="cocktail-menu">
+                <div class="cocktail-item">
+                    <h4>🍹 It Takes Agave to Mango</h4>
+                    <p>Mango Purée | Puerto Rican Rum | Ginger Agave | Lime Juice | Dash of Cream | Vanilla | Triple Sec</p>
+                </div>
+                
+                <div class="cocktail-item">
+                    <h4>🍉 Summer Melon Margarita</h4>
+                    <p>Watermelon & Cantaloupe Juice | 100% Blue Agave Tequila | Ginger Agave | Lime Juice | Salted Rim</p>
+                </div>
+                
+                <div class="cocktail-item">
+                    <h4>🍑 Life's a Peach</h4>
+                    <p>Peach Purée | Lemon Juice | Honey | Amaretto | Bourbon</p>
+                </div>
             </div>
+            
+            <p style="color: #fff200; font-weight: bold; margin-bottom: 20px;">Come taste summer in every sip — only at The Village Italian Restaurant!</p>
+            
             <button class="popup-cta" onclick="closePopup()">View Menu & Order</button>
         </div>
     </div>
@@ -457,7 +511,10 @@
                 document.body.style.transition = 'opacity 0.5s ease-in-out';
                 document.body.style.opacity = '1';
                 
-                // Popup disabled for cleaner design
+                // Show summer cocktails popup after page loads
+                setTimeout(() => {
+                    showPopup();
+                }, 1000);
             }, 100);
         });
     </script>
