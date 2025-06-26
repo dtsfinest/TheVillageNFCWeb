@@ -35,11 +35,25 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
+        .logo {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
         .header h1 {
             font-size: 3rem;
             color: white;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            display: none; /* Hide text title since logo contains it */
         }
 
         .header p {
@@ -264,6 +278,10 @@
         }
 
         @media (max-width: 768px) {
+            .logo {
+                max-width: 300px;
+            }
+            
             .header h1 {
                 font-size: 2rem;
             }
@@ -296,6 +314,7 @@
 
     <div class="container">
         <header class="header">
+            <img src="logo.svg" alt="The Village Italian Restaurant" class="logo">
             <h1>The Village Italian Restaurant</h1>
             <p>Authentic Italian cuisine in the heart of your neighborhood</p>
         </header>
@@ -383,7 +402,7 @@
             </div>
             <div class="contact-item">
                 <h3>📞 Contact</h3>
-                <p>Phone: 415-898-2234<br>Email: info@villageitalian.com</p>
+                <p>Phone: 415-898-2234<br>Email: info@thevillageitalianrestaurant.com</p>
             </div>
         </div>
 
