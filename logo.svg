@@ -1,37 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
   <defs>
-    <radialGradient id="greenGradient" cx="50%" cy="50%">
-      <stop offset="0%" style="stop-color:#a8d8a8;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#4a7c59;stop-opacity:1" />
+    <!-- Exact gradient to match the original logo -->
+    <radialGradient id="exactGreenGradient" cx="50%" cy="40%">
+      <stop offset="0%" style="stop-color:#d4e6c7;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#a8c998;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6b8e5a;stop-opacity:1" />
     </radialGradient>
   </defs>
   
-  <!-- Outer border -->
-  <ellipse cx="400" cy="200" rx="380" ry="180" fill="none" stroke="#8b0000" stroke-width="8"/>
-  <ellipse cx="400" cy="200" rx="360" ry="160" fill="none" stroke="#ffffff" stroke-width="4"/>
-  <ellipse cx="400" cy="200" rx="340" ry="140" fill="none" stroke="#8b0000" stroke-width="4"/>
+  <!-- Outer gray border -->
+  <ellipse cx="300" cy="150" rx="295" ry="145" fill="#e8e8e8" opacity="0.7"/>
   
-  <!-- Background -->
-  <ellipse cx="400" cy="200" rx="330" ry="130" fill="url(#greenGradient)"/>
+  <!-- Dark red outer border -->
+  <ellipse cx="300" cy="150" rx="285" ry="135" fill="none" stroke="#8b0000" stroke-width="6"/>
   
-  <!-- House icon -->
-  <g transform="translate(400, 80) scale(2)">
-    <!-- Outer house frame -->
-    <polygon points="0,-25 -20,0 -15,0 -15,20 15,20 15,0 20,0" fill="#8b0000" stroke="#ffffff" stroke-width="1"/>
-    <!-- Middle house frame -->
-    <polygon points="0,-20 -15,-2 -12,-2 -12,15 12,15 12,-2 15,-2" fill="#8b0000" stroke="#ffffff" stroke-width="1"/>
-    <!-- Inner house frame -->
-    <polygon points="0,-15 -10,-4 -8,-4 -8,10 8,10 8,-4 10,-4" fill="#8b0000" stroke="#ffffff" stroke-width="1"/>
+  <!-- White middle border -->
+  <ellipse cx="300" cy="150" rx="275" ry="125" fill="none" stroke="#ffffff" stroke-width="4"/>
+  
+  <!-- Inner red border -->
+  <ellipse cx="300" cy="150" rx="265" ry="115" fill="none" stroke="#8b0000" stroke-width="3"/>
+  
+  <!-- Green background -->
+  <ellipse cx="300" cy="150" rx="255" ry="105" fill="url(#exactGreenGradient)"/>
+  
+  <!-- Concentric house buildings (matching the original exactly) -->
+  <g transform="translate(300, 65)">
+    <!-- Outermost building -->
+    <path d="M 0,-30 L -28,-2 L -20,-2 L -20,25 L 20,25 L 20,-2 L 28,-2 Z" fill="#8b0000" stroke="#ffffff" stroke-width="1.5"/>
+    
+    <!-- Middle building -->
+    <path d="M 0,-25 L -22,0 L -16,0 L -16,20 L 16,20 L 16,0 L 22,0 Z" fill="#8b0000" stroke="#ffffff" stroke-width="1"/>
+    
+    <!-- Inner building -->
+    <path d="M 0,-20 L -16,2 L -12,2 L -12,15 L 12,15 L 12,2 L 16,2 Z" fill="#8b0000" stroke="#ffffff" stroke-width="1"/>
+    
+    <!-- Innermost building -->
+    <path d="M 0,-15 L -10,4 L -8,4 L -8,12 L 8,12 L 8,4 L 10,4 Z" fill="#8b0000" stroke="#ffffff" stroke-width="0.5"/>
+    
     <!-- Window -->
-    <rect x="-3" y="-1" width="6" height="6" fill="#ffffff"/>
-    <line x1="0" y1="-1" x2="0" y2="5" stroke="#8b0000" stroke-width="1"/>
-    <line x1="-3" y1="2" x2="3" y2="2" stroke="#8b0000" stroke-width="1"/>
+    <rect x="-4" y="6" width="8" height="6" fill="#ffffff"/>
+    <line x1="0" y1="6" x2="0" y2="12" stroke="#8b0000" stroke-width="1"/>
+    <line x1="-4" y1="9" x2="4" y2="9" stroke="#8b0000" stroke-width="1"/>
   </g>
   
-  <!-- Main text "THE VILLAGE" -->
-  <text x="400" y="180" font-family="serif" font-size="72" font-weight="bold" text-anchor="middle" fill="#8b0000" stroke="#ffffff" stroke-width="2">THE VILLAGE</text>
+  <!-- "THE VILLAGE" text - exact styling -->
+  <text x="300" y="130" font-family="Times, serif" font-size="42" font-weight="bold" text-anchor="middle" fill="#8b0000" stroke="#ffffff" stroke-width="1" style="font-style: italic;">THE VILLAGE</text>
   
-  <!-- Subtitle "ITALIAN RESTAURANT" -->
-  <text x="400" y="220" font-family="serif" font-size="36" font-weight="bold" text-anchor="middle" fill="#8b0000" stroke="#ffffff" stroke-width="1">ITALIAN RESTAURANT</text>
+  <!-- "ITALIAN RESTAURANT" text -->
+  <text x="300" y="160" font-family="Times, serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#8b0000" stroke="#ffffff" stroke-width="0.5" style="letter-spacing: 1px;">ITALIAN RESTAURANT</text>
 </svg> 
