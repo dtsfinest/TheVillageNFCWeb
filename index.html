@@ -199,12 +199,14 @@
 
         .popup-content {
             background: linear-gradient(135deg, #ff9a56 0%, #ff6b9d 50%, #c471f5 100%);
-            padding: 40px;
+            padding: 20px;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             text-align: center;
-            max-width: 600px;
+            max-width: 500px;
             width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
             position: relative;
             transform: scale(0.7);
             transition: transform 0.3s ease;
@@ -216,9 +218,10 @@
 
         .popup-content h2 {
             color: white;
-            font-size: 2.2rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
         }
 
         .popup-content p {
@@ -274,18 +277,18 @@
 
         .cocktail-image {
             width: 100%;
-            max-width: 400px;
+            max-width: 300px;
             height: auto;
             border-radius: 15px;
-            margin: 20px 0;
+            margin: 15px 0;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
         .cocktail-menu {
             text-align: left;
-            margin: 20px 0;
+            margin: 15px 0;
             background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
+            padding: 15px;
             border-radius: 15px;
             backdrop-filter: blur(10px);
         }
@@ -327,6 +330,102 @@
             
             .container {
                 padding: 10px;
+            }
+
+            .popup-content {
+                padding: 15px;
+                max-width: 95%;
+                max-height: 90vh;
+            }
+            
+            .popup-content h2 {
+                font-size: 1.4rem;
+                margin-bottom: 10px;
+            }
+            
+            .popup-content h3 {
+                font-size: 1.1rem;
+                margin-bottom: 15px;
+            }
+            
+            .popup-content p {
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+            
+            .cocktail-image {
+                max-width: 250px;
+                margin: 10px 0;
+            }
+            
+            .cocktail-menu {
+                padding: 12px;
+                margin: 10px 0;
+            }
+            
+            .cocktail-item {
+                margin-bottom: 12px;
+            }
+            
+            .cocktail-item h4 {
+                font-size: 1rem;
+            }
+            
+            .cocktail-item p {
+                font-size: 0.85rem;
+            }
+            
+            .popup-close {
+                top: 10px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .popup-content {
+                padding: 10px;
+                max-width: 98%;
+                max-height: 95vh;
+            }
+            
+            .popup-content h2 {
+                font-size: 1.2rem;
+                margin-bottom: 8px;
+            }
+            
+            .popup-content h3 {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+            
+            .cocktail-image {
+                max-width: 200px;
+                margin: 8px 0;
+            }
+            
+            .cocktail-menu {
+                padding: 10px;
+                margin: 8px 0;
+            }
+            
+            .cocktail-item {
+                margin-bottom: 10px;
+            }
+            
+            .cocktail-item h4 {
+                font-size: 0.95rem;
+            }
+            
+            .cocktail-item p {
+                font-size: 0.8rem;
+            }
+            
+            .popup-cta {
+                font-size: 0.9rem;
+                padding: 10px 25px;
             }
         }
     </style>
