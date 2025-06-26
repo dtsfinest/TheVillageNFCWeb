@@ -161,6 +161,108 @@
             text-align: center;
         }
 
+        /* Popup Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .popup-overlay.active .popup-content {
+            transform: scale(1);
+        }
+
+        .popup-content h2 {
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .popup-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .popup-announcement {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #ffd700;
+        }
+
+        .popup-cta {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #333;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .popup-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
@@ -177,6 +279,21 @@
     </style>
 </head>
 <body>
+    <!-- Special Announcement Popup -->
+    <div id="announcementPopup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <h2>🍝 Special Announcement!</h2>
+            <div class="popup-announcement">
+                <p><strong>New Weekend Special!</strong></p>
+                <p>Try our signature Osso Buco every Friday, Saturday & Sunday!</p>
+                <p>Made with slow-braised veal shanks in a rich tomato and wine sauce.</p>
+                <p><em>Available while supplies last</em></p>
+            </div>
+            <button class="popup-cta" onclick="closePopup()">View Menu & Order</button>
+        </div>
+    </div>
+
     <div class="container">
         <header class="header">
             <h1>The Village Italian Restaurant</h1>
@@ -274,6 +391,34 @@
             alert('Online ordering system would be integrated here. For now, please call us at (123) 456-7890 to place your order!');
         }
 
+        // Popup functionality
+        function showPopup() {
+            const popup = document.getElementById('announcementPopup');
+            popup.classList.add('active');
+        }
+
+        function closePopup() {
+            const popup = document.getElementById('announcementPopup');
+            popup.classList.remove('active');
+        }
+
+        // Close popup when clicking outside
+        document.addEventListener('click', function(event) {
+            const popup = document.getElementById('announcementPopup');
+            const popupContent = document.querySelector('.popup-content');
+            
+            if (event.target === popup) {
+                closePopup();
+            }
+        });
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closePopup();
+            }
+        });
+
         // Add smooth scrolling for better user experience
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -284,12 +429,17 @@
             });
         });
 
-        // Add loading animation
+        // Add loading animation and show popup
         window.addEventListener('load', function() {
             document.body.style.opacity = '0';
             setTimeout(() => {
                 document.body.style.transition = 'opacity 0.5s ease-in-out';
                 document.body.style.opacity = '1';
+                
+                // Show popup after page loads (with a small delay)
+                setTimeout(() => {
+                    showPopup();
+                }, 1000);
             }, 100);
         });
     </script>
