@@ -195,7 +195,76 @@
             border: 1px solid #e9ecef;
         }
 
+        /* Video Popup Styles */
+        .video-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
 
+        .video-popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .video-popup-content {
+            background: #000;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .video-popup-close {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-popup-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
 
         @media (max-width: 768px) {
             .logo {
@@ -264,6 +333,14 @@
                 height: 35px;
                 font-size: 1.5rem;
             }
+
+            .video-popup-content {
+                width: 95%;
+            }
+            .video-popup-close {
+                top: -50px;
+                right: 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -313,7 +390,18 @@
     </style>
 </head>
 <body>
-
+    <!-- Video Popup -->
+    <div id="videoPopup" class="video-popup-overlay">
+        <div class="video-popup-content">
+            <button class="video-popup-close" onclick="closeVideoPopup()">&times;</button>
+            <div class="video-container">
+                <video id="karaoke-video" controls>
+                    <source src="https://raw.githubusercontent.com/dtsfinest/TheVillageNFCWeb/main/SUNDAYKARAOKE.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <header class="header">
@@ -423,14 +511,37 @@
     </div>
 
     <script>
-        // Add smooth scrolling for better user experience
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        // Video Popup functionality
+        function showVideoPopup() {
+            const popup = document.getElementById('videoPopup');
+            const video = document.getElementById('karaoke-video');
+            popup.classList.add('active');
+            video.play();
+        }
+
+        function closeVideoPopup() {
+            const popup = document.getElementById('videoPopup');
+            const video = document.getElementById('karaoke-video');
+            popup.classList.remove('active');
+            video.pause();
+            video.currentTime = 0;
+        }
+
+        // Close video popup when clicking outside
+        document.addEventListener('click', function(event) {
+            const popup = document.getElementById('videoPopup');
+            const popupContent = document.querySelector('.video-popup-content');
+            
+            if (event.target === popup) {
+                closeVideoPopup();
+            }
+        });
+
+        // Close video popup with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeVideoPopup();
+            }
         });
 
         // Add loading animation
@@ -439,7 +550,22 @@
             setTimeout(() => {
                 document.body.style.transition = 'opacity 0.5s ease-in-out';
                 document.body.style.opacity = '1';
+                
+                // Show video popup after page loads
+                setTimeout(() => {
+                    showVideoPopup();
+                }, 1000);
             }, 100);
+        });
+
+        // Add smooth scrolling for better user experience
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
     </script>
 </body>
