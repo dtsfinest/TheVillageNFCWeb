@@ -395,7 +395,7 @@
         <div class="video-popup-content">
             <button class="video-popup-close" onclick="closeVideoPopup()">&times;</button>
             <div class="video-container">
-                <video id="karaoke-video" controls autoplay muted playsinline>
+                <video id="karaoke-video" controls preload="auto" playsinline>
                     <source src="https://raw.githubusercontent.com/dtsfinest/TheVillageNFCWeb/main/SUNDAYKARAOKE.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -515,17 +515,32 @@
         function showVideoPopup() {
             const popup = document.getElementById('videoPopup');
             const video = document.getElementById('karaoke-video');
-            popup.classList.add('active');
+            
+            // Reset video state
+            video.currentTime = 0;
             video.muted = false;
-            video.play();
+            
+            // Play video after a short delay to ensure popup is visible
+            popup.classList.add('active');
+            setTimeout(() => {
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Video is playing
+                    }).catch(error => {
+                        // Auto-play was prevented, show a play button or message
+                        console.log("Video autoplay failed:", error);
+                    });
+                }
+            }, 100);
         }
 
         function closeVideoPopup() {
             const popup = document.getElementById('videoPopup');
             const video = document.getElementById('karaoke-video');
-            popup.classList.remove('active');
             video.pause();
             video.currentTime = 0;
+            popup.classList.remove('active');
         }
 
         // Close video popup when clicking outside
